@@ -1331,6 +1331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhostPlayerCube
       objectReference: {fileID: 0}
+    - target: {fileID: 2243698459137588349, guid: e7629303fe45cbb49a622845ea82ae38, type: 3}
+      propertyPath: syncInterpolationFrameRate
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5288217627046674644, guid: e7629303fe45cbb49a622845ea82ae38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

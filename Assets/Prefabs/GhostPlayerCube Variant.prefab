@@ -52,6 +52,22 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0c16fc05d00a7a74b8c46087883dc5fe, type: 2}
+    - target: {fileID: 2980305384300855754, guid: 145272593b45668479df2417d60c420d, type: 3}
+      propertyPath: field of view
+      value: 60.000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2980305384300855754, guid: 145272593b45668479df2417d60c420d, type: 3}
+      propertyPath: m_FocalLength
+      value: 20.78461
+      objectReference: {fileID: 0}
+    - target: {fileID: 2980305384300855754, guid: 145272593b45668479df2417d60c420d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2980305384300855754, guid: 145272593b45668479df2417d60c420d, type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5373192789467780773, guid: 145272593b45668479df2417d60c420d, type: 3}
       propertyPath: m_Name
       value: GhostPlayerCube Variant
@@ -87,3 +103,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncDelay: 0
+  syncInterpolationFrameRate: 0
