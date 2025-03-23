@@ -32,7 +32,14 @@ public class PlayerController : MonoBehaviour
         // if()
         MoveForward();
         JumpInput();
+
+        UpdateSyncStateData();
         // transform.position = new(transform.position.x, lerpedHeight, transform.position.z);
+    }
+
+    private void UpdateSyncStateData()
+    {
+        StateSync.Instance.UpdateState(transform.position);
     }
 
     private void JumpInput()
