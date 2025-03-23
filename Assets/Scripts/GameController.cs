@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     public float GameSpeed => gameSpeed;
 
 
+
     void Start()
     {
         StartGame();
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
     {
         isGameRunning = true;
         collectedScore = 0;
+        distanceScore = 0;
         Coroutine increaseScoreCoroutine = StartCoroutine(IncreaseDistanceScore());
         Coroutine speedUpGameCoroutine = StartCoroutine(SpeedUpGamePeriodically());
     }

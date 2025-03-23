@@ -125,7 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseForwardSpeed: 10
   topSpeedTime: 5
-  jumpHeight: 20
+  jumpHeight: 10
   jumpCancelTime: 0.1
   gameController: {fileID: 0}
 --- !u!54 &3660124717900177079
