@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3660124717900177079}
   m_Layer: 0
   m_Name: PlayerCube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,10 +123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c9c2ac4db24b6458e99b5eee47049a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 10
+  baseForwardSpeed: 10
   topSpeedTime: 5
   jumpHeight: 20
   jumpCancelTime: 0.1
+  gameController: {fileID: 0}
 --- !u!54 &3660124717900177079
 Rigidbody:
   m_ObjectHideFlags: 0

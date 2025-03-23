@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 // using Unity;
@@ -6,13 +7,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private float forwardSpeed = 10f;
+    private float baseForwardSpeed = 10f;
     [SerializeField]
     private float topSpeedTime = 3f;
     [SerializeField]
     private float jumpHeight = 10f;
     [SerializeField]
     private float jumpCancelTime = 3f;
+    [SerializeField]
+    private GameController gameController;
 
     private Rigidbody rb;
     private float lerpedForwardSpeed;
@@ -25,7 +28,8 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(LerpForwardPos(0, forwardSpeed));
+        // Debug.Log(gameController.GameSpeed);
+        StartCoroutine(LerpForwardPos(0, baseForwardSpeed * gameController.GameSpeed));
     }
     private void Update()
     {
@@ -112,5 +116,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
+    }
+
+    internal void CollectPoint()
+    {
+        gameController.CollectPoint();
     }
 }
