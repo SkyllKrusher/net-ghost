@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhostPlayerCube Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5668960643091427065, guid: 145272593b45668479df2417d60c420d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8606459046395073545, guid: 145272593b45668479df2417d60c420d, type: 3}
       propertyPath: m_Name
       value: Ghost Player Camera
