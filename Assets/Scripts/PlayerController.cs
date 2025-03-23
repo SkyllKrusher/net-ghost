@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         // Debug.Log(gameController.GameSpeed);
-        StartCoroutine(LerpForwardPos(0, baseForwardSpeed * gameController.GameSpeed));
+        StartCoroutine(LerpForwardSpeed(transform.position.z, baseForwardSpeed * gameController.GameSpeed));
     }
     private void Update()
     {
@@ -95,30 +95,45 @@ public class PlayerController : MonoBehaviour
         transform.position = targetPosition;
     }
 
-    private IEnumerator LerpForwardPos(float start, float end)
+    private IEnumerator LerpForwardSpeed(float startZ, float endZ)
     {
         float timeElapsed = 0;
         while (timeElapsed < topSpeedTime)
         {
             float t = timeElapsed / topSpeedTime;
-            lerpedForwardSpeed = Mathf.Lerp(start, end, t);
+            lerpedForwardSpeed = Mathf.Lerp(startZ, endZ, t);
             Debug.Log("Lerped Speed : " + lerpedForwardSpeed);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
 
-        lerpedForwardSpeed = end;
+        lerpedForwardSpeed = endZ;
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            ObstacleCollision();
+        }
     }
 
-    internal void CollectPoint()
+    private void ObstacleCollision()
+    {
+        gameController.LoseGame();
+        PlayerDeath();
+    }
+
+    private void PlayerDeath()
+    {
+        gameObject.GetComponent<MeshRenderer>().enabled = (false);
+    }
+
+    public void CollectPoint()
     {
         gameController.CollectPoint();
     }

@@ -74,4 +74,11 @@ public class GameController : MonoBehaviour
         totalScore = (int)distanceScore + collectedScore;
         gameUIReference.UpdateScore(totalScore);
     }
+
+    public void LoseGame()
+    {
+        gameUIReference.ShowGameOverUI();
+        isGameRunning = false;
+        gameSpeed = 0;
+    }
 }
