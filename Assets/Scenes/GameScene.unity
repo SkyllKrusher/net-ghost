@@ -886,7 +886,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  sharedProfile: {fileID: 11400000, guid: ca53f081d3ebdf74fa7a30b82c64dda7, type: 2}
 --- !u!4 &832575519
 Transform:
   m_ObjectHideFlags: 0
@@ -2489,7 +2489,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
-  - {fileID: 832575519}
   - {fileID: 6015921994373732602}
   - {fileID: 2830463908858016919}
   - {fileID: 438632484}
@@ -2499,3 +2498,4 @@ SceneRoots:
   - {fileID: 1451558986}
   - {fileID: 79744374}
   - {fileID: 2106355327}
+  - {fileID: 832575519}
