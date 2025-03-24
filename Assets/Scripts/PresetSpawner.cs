@@ -30,15 +30,14 @@ public class PresetSpawner : MonoBehaviour
         initializePoolIndex = 0;
         for (int i = 0; i < presetPrefabs.Length; i++)
         {
-            Debug.LogError("INIT POOL INDEX in loop = " + initializePoolIndex);
+            // Debug.LogError("INIT POOL INDEX in loop = " + initializePoolIndex);
 
             _presetPools[i] = new ObjectPool<Preset>(CreatePresetPool, null, OnRelease, defaultCapacity: 20);
         }
     }
 
-    private IEnumerator Start()
+    private void Start()
     {
-        yield return new WaitForSeconds(5);
         StartCoroutine(SpawnGroundsPeriodically());
     }
 
@@ -53,16 +52,18 @@ public class PresetSpawner : MonoBehaviour
         var preset = Instantiate(presetPrefabs[initializePoolIndex]);
         preset.Init(this, initializePoolIndex);
         initializePoolIndex++;
+        initializePoolIndex = Mathf.Clamp(initializePoolIndex, 0, presetPrefabs.Length - 1);
         return preset;
     }
 
     private IEnumerator SpawnGroundsPeriodically()
     {
+        yield return null;
         int i = 0;
         while (spawn)
         {
-            Debug.LogError("i = " + i);
-            int roundedIndex = (i + 1) % (presetPrefabs.Length);
+            Debug.LogError("i = " + i + " size = " + presetPrefabs.Length);
+            int roundedIndex = i % presetPrefabs.Length;
             Debug.Log("rounded i = " + roundedIndex);
             SpawnGround(roundedIndex);
             yield return new WaitForSeconds(spawnInterval);
