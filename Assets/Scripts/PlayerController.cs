@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-// using Unity;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
             return;
 
         MoveForward();
-        JumpInput();
         UpdateSyncStateData();
     }
 
@@ -46,17 +45,14 @@ public class PlayerController : MonoBehaviour
         StateSync.Instance.UpdateState(transform.position);
     }
 
-    private void JumpInput()
+    public void Jump(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        {
-            Jump();
-        }
-        if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
-        {
+        if (context.performed)
+            HandleJump();
+        if (context.canceled)
             StartCoroutine(JumpCancelSmooth(rb.linearVelocity.y));
-        }
     }
+
 
     private IEnumerator JumpCancelSmooth(float startVelocity)
     {
@@ -74,7 +70,7 @@ public class PlayerController : MonoBehaviour
         lerpedYSpeed = 0;
     }
 
-    private void Jump()
+    private void HandleJump()
     {
         Debug.Log("Jump Pressed");
         if (!isGrounded)
