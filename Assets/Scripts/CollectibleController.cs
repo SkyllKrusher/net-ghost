@@ -50,7 +50,7 @@ public class CollectibleController : MonoBehaviour
         collectible.transform.position = spawnCentre.position + spawnOffset;
         collectible.transform.parent = ColllectiblesParentTf;
         collectible.gameObject.SetActive(true);
-        collectible.Init();
+        // collectible.Init();
     }
 
     private void InitializeCollectiblesObjectPool()
@@ -63,16 +63,6 @@ public class CollectibleController : MonoBehaviour
         var Collectible = Instantiate(collectiblePrefab);
         return Collectible;
     }
-
-    // private void DestroyCollectible(Collectible collectible)
-    // {
-    //     collectible.gameObject.SetActive(false);
-    // }
-
-    // private void OnTakeFromPool(Collectible collectible)
-    // {
-    //     //
-    // }
 
     private void OnReturnToPool(Collectible collectible)
     {
