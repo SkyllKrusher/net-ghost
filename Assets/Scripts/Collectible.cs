@@ -1,7 +1,33 @@
+using System;
 using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
+    private float timePassed = 0;
+    CollectibleController collectibleController;
+    public void Awake()
+    {
+        collectibleController = FindFirstObjectByType<CollectibleController>();
+    }
+
+    public void Init()
+    {
+        timePassed = 0;
+        // gameObject.SetActive(true);
+    }
+
+    private void Update()
+    {
+        ReleaseOnLifeCyleEnd();
+    }
+    private void ReleaseOnLifeCyleEnd()
+    {
+        timePassed += Time.deltaTime;
+        if (timePassed >= collectibleController.LifeCycle)
+        {
+            ReturnToObjectPool();
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("other tag" + other.tag);
@@ -19,7 +45,7 @@ public class Collectible : MonoBehaviour
     }
     private void ReturnToObjectPool()
     {
-        Destroy(gameObject);
+        collectibleController.Release(this);
     }
 }
 
