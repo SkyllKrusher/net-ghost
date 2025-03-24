@@ -33,12 +33,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        // if()
+        if (!gameController.IsGameRunning)
+            return;
+
         MoveForward();
         JumpInput();
-
         UpdateSyncStateData();
-        // transform.position = new(transform.position.x, lerpedHeight, transform.position.z);
     }
 
     private void UpdateSyncStateData()
@@ -117,15 +117,17 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
         if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            ObstacleCollision();
-        }
+            if (collision.gameObject.GetComponent<Obstacle>() != null)
+            {
+                ObstacleCollision(collision.gameObject.GetComponent<Obstacle>());
+            }
     }
 
-    private void ObstacleCollision()
+    private void ObstacleCollision(Obstacle collidedObstacle)
     {
-        gameController.LoseGame();
         PlayerDeath();
+        gameController.LoseGame();
+        collidedObstacle.OnHit();
     }
 
     private void PlayerDeath()

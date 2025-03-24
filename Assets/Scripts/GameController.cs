@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     private float scoreUpdateTime = 0.2f;
 
     private bool isGameRunning = true;
+    public bool IsGameRunning => isGameRunning;
     private float gameSpeed = 1f;
     public float GameSpeed => gameSpeed;
 

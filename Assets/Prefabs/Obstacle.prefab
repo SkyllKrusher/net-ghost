@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2669328961890602819}
   - component: {fileID: 548058018943811873}
   - component: {fileID: 3522830304720656119}
+  - component: {fileID: 1911509549492044648}
+  - component: {fileID: 2582381206669010383}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: Obstacle
@@ -65,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a18200acf1b3ac749a5d0949c26a963f, type: 2}
+  - {fileID: 2100000, guid: cb4f42db6e019d74f926aa90d425dbe3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,3 +110,29 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1911509549492044648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4174182283470165411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f6554d120da8849873f9a5afe6e48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultDissolveDuration: 1.5
+--- !u!114 &2582381206669010383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4174182283470165411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f626f78911c0194fbfd3ece2fb7bfb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissolveObjectRef: {fileID: 1911509549492044648}
