@@ -48,11 +48,11 @@ public class PlayerController : MonoBehaviour
 
     private void JumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Jump();
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
         {
             StartCoroutine(JumpCancelSmooth(rb.linearVelocity.y));
         }
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerDeath()
     {
-        gameObject.GetComponent<MeshRenderer>().enabled = (false);
+        // gameObject.GetComponent<MeshRenderer>().enabled = (false);
     }
 
     public void CollectPoint()
