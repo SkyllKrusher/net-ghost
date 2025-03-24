@@ -4,10 +4,10 @@ using UnityEngine.Pool;
 using System;
 using Unity.VisualScripting;
 
-public class GroundController : MonoBehaviour
+public class PresetSpawner : MonoBehaviour
 {
     [SerializeField]
-    private SpawnPreset[] spawnPresetPrefabs;
+    private Preset[] presetPrefabs;
     [SerializeField]
     private Transform spawnLocation;
     [SerializeField]
@@ -16,7 +16,7 @@ public class GroundController : MonoBehaviour
     private float lifeCycle;
     public float LifeCycle { get { return lifeCycle; } }
     private Vector3 spawnOffset = new(0, -2, 0);
-    private ObjectPool<SpawnPreset>[] _presetPools;
+    private ObjectPool<Preset>[] _presetPools;
     private bool spawn = true;
     private int initializePoolIndex;
 
@@ -26,13 +26,13 @@ public class GroundController : MonoBehaviour
     }
     private void CreateAllPresetPools()
     {
-        _presetPools = new ObjectPool<SpawnPreset>[spawnPresetPrefabs.Length];
+        _presetPools = new ObjectPool<Preset>[presetPrefabs.Length];
         initializePoolIndex = 0;
-        for (int i = 0; i < spawnPresetPrefabs.Length; i++)
+        for (int i = 0; i < presetPrefabs.Length; i++)
         {
             Debug.LogError("INIT POOL INDEX in loop = " + initializePoolIndex);
 
-            _presetPools[i] = new ObjectPool<SpawnPreset>(CreatePresetPool, null, OnRelease, defaultCapacity: 20);
+            _presetPools[i] = new ObjectPool<Preset>(CreatePresetPool, null, OnRelease, defaultCapacity: 20);
         }
     }
 
@@ -42,15 +42,15 @@ public class GroundController : MonoBehaviour
         StartCoroutine(SpawnGroundsPeriodically());
     }
 
-    private void OnRelease(SpawnPreset preset)
+    private void OnRelease(Preset preset)
     {
         preset.gameObject.SetActive(false);
     }
 
-    private SpawnPreset CreatePresetPool()
+    private Preset CreatePresetPool()
     {
         Debug.LogError("INIT POOL INDEX = " + initializePoolIndex);
-        var preset = Instantiate(spawnPresetPrefabs[initializePoolIndex]);
+        var preset = Instantiate(presetPrefabs[initializePoolIndex]);
         preset.Init(this, initializePoolIndex);
         initializePoolIndex++;
         return preset;
@@ -62,7 +62,7 @@ public class GroundController : MonoBehaviour
         while (spawn)
         {
             Debug.LogError("i = " + i);
-            int roundedIndex = (i + 1) % (spawnPresetPrefabs.Length);
+            int roundedIndex = (i + 1) % (presetPrefabs.Length);
             Debug.Log("rounded i = " + roundedIndex);
             SpawnGround(roundedIndex);
             yield return new WaitForSeconds(spawnInterval);
@@ -78,7 +78,7 @@ public class GroundController : MonoBehaviour
         ground.gameObject.SetActive(true);
     }
 
-    public void Release(SpawnPreset spawnPreset)
+    public void Release(Preset spawnPreset)
     {
         _presetPools[spawnPreset.PresetIndex].Release(spawnPreset);
     }

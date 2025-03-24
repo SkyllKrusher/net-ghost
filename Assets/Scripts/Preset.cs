@@ -1,16 +1,16 @@
 using Unity.Multiplayer.Center.Common;
 using UnityEngine;
 
-public class SpawnPreset : MonoBehaviour
+public class Preset : MonoBehaviour
 {
     int presetIndex;
     public int PresetIndex { get { return presetIndex; } }
-    GroundController groundControllerRef;
+    PresetSpawner presetSpawnerRef;
     private float timePassed;
-    public void Init(GroundController groundController, int presetIndex)
+    public void Init(PresetSpawner groundController, int presetIndex)
     {
         timePassed = 0;
-        groundControllerRef = groundController;
+        presetSpawnerRef = groundController;
         this.presetIndex = presetIndex;
     }
     private void Update()
@@ -20,13 +20,13 @@ public class SpawnPreset : MonoBehaviour
     private void ReleaseOnLifeCycleEnd()
     {
         timePassed += Time.deltaTime;
-        if (timePassed >= groundControllerRef.LifeCycle)
+        if (timePassed >= presetSpawnerRef.LifeCycle)
         {
             EndLifeCycle();
         }
     }
     private void EndLifeCycle()
     {
-        groundControllerRef.Release(this);
+        presetSpawnerRef.Release(this);
     }
 }
